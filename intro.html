@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+    <head>
+        <script>
+            function onSubmit(){
+                var email = document.forms['loginForm']['textEmail'].value
+                var password = document.forms['loginForm']['textPassword'].value
+
+                if(email === ""){
+                    alert("Please enter your email")
+                }
+                if(password === ""){
+                    alert("Please enter your password")
+                }
+                return false;
+            }
+        </script>
+    </head>
+    <body>
+        <h1>Login</h1>
+        <form name="loginForm" onsubmit="return onSubmit()">
+            <label>Email</label>
+            <input type="text" name="textEmail" value="" /><br/>
+
+            <label>Password</label>
+            <input type="text" name="textPassword" value="" /><br/>
+
+            <input type="submit" name="submitBtn" value="Login"/>
+        </form>
+    </body>
+</html>
