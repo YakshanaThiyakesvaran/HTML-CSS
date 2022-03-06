@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+    <head>
+        <script>
+
+            function checkInputValidity(){
+                var name = document.forms['testTwoForm']['textName'].value
+                var index = document.forms['testTwoForm']['textIndex'].value
+
+                var PC = document.forms['testTwoForm']['PC'].value
+                var SE = document.forms['testTwoForm']['SE'].value
+                var WP = document.forms['testTwoForm']['WP'].value
+                var GD = document.forms['testTwoForm']['GD'].value
+
+                if(name === ""){
+                    alert("Please enter your name")
+                } else if(index === ""){
+                    alert("Please enter your Index Number")
+                } else if(PC === ""){
+                    alert("Please enter your Programming Concepts marks")
+                } else if(SE === ""){
+                    alert("Please enter your Software Engineering marks")
+                } else if(WP === ""){
+                    alert("Please enter your Web Programming marks")
+                } else if(GD === ""){
+                    alert("Please enter your Web Programming marks")
+                } else if(Number(PC) < 0 || Number(PC) > 100){
+                    alert("Please enter your Programming Concept marks between 0 and 100")
+                } else if(Number(SE) < 0 || Number(SE) > 100){
+                    alert("Please enter your Software Engineering marks between 0 and 100")
+                } else if(Number(WP) < 0 || Number(WP) > 100){
+                    alert("Please enter your Web Programming marks between 0 and 100")
+                } else if(Number(GD) < 0 || Number(GD) > 100){
+                    alert("Please enter your Web Programming marks between 0 and 100")
+                }
+            }
+
+            function calculateTotal(){
+                var PC = Number(document.forms['testTwoForm']['PC'].value)
+                var SE = Number(document.forms['testTwoForm']['SE'].value)
+                var WP = Number(document.forms['testTwoForm']['WP'].value)
+                var GD = Number(document.forms['testTwoForm']['GD'].value)
+
+                var total = PC + SE + WP + GD;
+                document.forms['testTwoForm']['textTotal'].value = total
+                calculateAverage(total);
+                return false;
+            }
+
+            function calculateAverage(total){
+                var average = total/4;
+                document.forms['testTwoForm']['textAvg'].value = average
+                calculateClass(average);
+                return false;
+            }
+
+            function calculateClass(avg){
+                if(avg>=85){
+                    document.forms['testTwoForm']['textClass'].value = "First Class"
+                } else if(avg>=70){
+                    document.forms['testTwoForm']['textClass'].value = "Second Class (Upper)"
+                } else if(avg>=60){
+                    document.forms['testTwoForm']['textClass'].value = "Second Class (Lower)"
+                } else if(avg>=50){
+                    document.forms['testTwoForm']['textClass'].value = "General"
+                } else {
+                    document.forms['testTwoForm']['textClass'].value = "fail"
+                }
+            }
+            
+            function onSubmit(){
+                checkInputValidity();
+                calculateTotal();
+                return false;
+            }
+        </script>
+    </head>
+    <body>
+        <h1>Sumanga Higher Education Institute</h1>
+
+        <form name="testTwoForm" onsubmit="return onSubmit()">
+            <label>Name : </label><br/>
+            <input type="text" name="textName" value="" /><br/>
+            <label>Index No : </label><br/>
+            <input type="text" name="textIndex" />
+            <br/>
+            
+            <h3>Subjects</h3>
+
+            <table>
+                <tr>
+                    <td>
+                        <label>Programming Concepts : </label> <br/>
+                        <input type="number" name="PC" value=""/>
+                    </td>
+                    <td>
+                        <label>Software Engineering : </label> <br/>
+                        <input type="number" name="SE" value="" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>Web Programming : </label> <br/>
+                        <input type="number"  name="WP" value=""/>
+                    </td>
+                    <td>
+                        <label>Graphic Design : </label> <br/>
+                        <input type="number"  name="GD" value=""/>
+                    </td>
+                </tr>
+            </table>
+
+            <input type="submit" name="submitButton" value="Calculate"/> <br/><br/>
+            
+            <label>Total</label><br/>
+            <input type="text" disabled id="txttot" value="" name="textTotal"/><br/><br/>
+
+            <label>Average</label><br/>
+            <input type="text" disabled value="" name="textAvg"/><br/><br/>
+
+            <label>Class</label><br/>
+            <input type="text" disabled value="" name="textClass"/><br/><br/>
+        </form>
+    </body>
+</html>
